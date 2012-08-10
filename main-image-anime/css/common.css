@@ -1,0 +1,76 @@
+div#mainImageArea {
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #ccc;
+    position: relative;
+    z-index: 0;
+}
+div.mainImage {
+    width: 800px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+div#mainImage1 {
+    background: url("../img/main_image_1.jpg");
+}
+div#mainImage2 {
+    background: url("../img/main_image_2.jpg");
+}
+div#mainImage3 {
+    background: url("../img/main_image_3.jpg");
+}
+div#mainImage2, div#mainImage3 {
+    display: none;
+}
+div.menuBox {
+    width: 120px;
+    height: 120px;
+    margin: 10px 0;
+    background: #ccf;
+    box-shadow: 2px 3px 6px #333;
+    position: absolute;
+    left: 650px;
+    z-index: 50
+}
+div#menuBox1 {
+    background: url("../img/menu_image_1.jpg");
+}
+div#menuBox2 {
+    background: url("../img/menu_image_2.jpg");
+}
+div#menuBox3 {
+    background: url("../img/menu_image_3.jpg");
+}
+div.menuBorder {
+    width: 112px;
+    height: 112px;
+    margin: 6px 0;
+    box-shadow: 3px 3px 6px #333;
+    border: 8px solid #fff;
+    position: absolute;
+    left: 646px;
+    z-index: 100;
+}
+div#menuBox1, div#menuBorder1 {
+    top: 0px;
+}
+div#menuBox2, div#menuBorder2 {
+    top: 130px;
+}
+div#menuBox3, div#menuBorder3 {
+    top: 260px;
+}
+div#menuBorder2, div#menuBorder3 {
+    display: none;
+}
+div.mainImage p {
+    margin: 20px 30px;
+    color: #fff;
+    text-shadow: 1px 1px 3px #333;
+}
