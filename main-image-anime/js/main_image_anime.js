@@ -18,6 +18,8 @@ $(function(){
     var menuBorders = $(".menuBorder");
     // 現在表示しているイメージの配列インデクス
     var currentIdx = 0;
+    // 現在ハイライトしているメニューの配列インデックス
+    var currentMenuIdx = 0;
     
     /**
      * getNextIdx()
@@ -44,10 +46,10 @@ $(function(){
      * fadeOutBorder()
      * メニューの枠線をフェードアウトする
      */
-    fadeOutBorder = function() {
+    fadeOutBorder = function(idx) {
         $(menuBorders).each(
             function() {
-                if ($(this).css("display") != "none") {
+                if ($(this).css("display") != "none" && this != menuBorders[idx]) {
                     $(this).fadeOut("fast");
                 }
             }
@@ -59,12 +61,13 @@ $(function(){
      * メインイメージのローテーション
      */
     rotateMainImage = function() {
-        $(mainImages[currentIdx]).fadeOut("normal");
-        fadeOutBorder();
+        $(mainImages[currentIdx]).fadeOut("slow");
         var nextIdx = getNextIdx();
         $(mainImages[nextIdx]).fadeIn("slow");
+        fadeOutBorder(nextIdx);
         $(menuBorders[nextIdx]).fadeIn("fast");
         currentIdx     = nextIdx;
+        currentMenuIdx = nextIdx;
     }
     
     /**
@@ -80,11 +83,12 @@ $(function(){
      */
     $(".menubox").mouseover(
         function () {
-            fadeOutBorder();
-            idx = getMenuIdx(this);
+            var idx = getMenuIdx(this);
+            fadeOutBorder(idx);
             if ($(menuBorders[idx]).css("display") == "none") {
-                $(menuBorders[idx]).fadeIn("normal");
+                $(menuBorders[idx]).fadeIn("fast");
             }
+            currentMenuIdx = idx;
         }
     );
     
@@ -93,14 +97,16 @@ $(function(){
      */
     $(".menuborder").click(
         function () {
-            $(mainImages[currentIdx]).fadeOut("normal");
-            fadeOutBorder();
             var idx = getMenuIdx(this);
-            $(mainImages[idx]).fadeIn("slow");
-            $(menuBorders[idx]).fadeIn("fast");
-            currentIdx     = idx;
-            clearInterval(rotationId);
-            rotationId = startRotation();
+            if (currentIdx != idx) {
+                $(mainImages[currentIdx]).fadeOut("slow");
+                $(mainImages[idx]).fadeIn("slow");
+                $(menuBorders[idx]).fadeIn("fast");
+                currentIdx     = idx;
+                currentMenuIdx = idx;
+                clearInterval(rotationId);
+                rotationId = startRotation();
+            }
         }
     );
 
